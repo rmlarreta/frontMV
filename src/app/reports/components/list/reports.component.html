@@ -1,0 +1,40 @@
+<p-card>
+    <p-toolbar>
+        <app-request></app-request>
+    </p-toolbar>
+    <ng-container *ngIf="first">
+        <div>
+            <label>Ciudad:</label>
+            <p>{{ first.ciudad?.nombre + ', ' + first.ciudad?.pais }}</p>
+        </div>
+        <div>
+            <label>Clima:</label>
+            <p>{{ first.clima}}</p>
+
+            <label>Sensación Térmica:</label>
+            <p>{{ first.termica }}</p>
+        </div>
+    </ng-container>
+    <p-table #dt [value]="listado" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        [tableStyle]="{'min-width': '50rem'}" dataKey="id"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+        [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="pais" style="width:20%">Pais <p-sortIcon field="pais"></p-sortIcon></th>
+                <th pSortableColumn="ciudad" style="width:40%">Ciudad <p-sortIcon field="ciudad"></p-sortIcon></th>
+                <th pSortableColumn="clima" style="width:20%">Clima<p-sortIcon field="clima"></p-sortIcon></th>
+                <th pSortableColumn="termica" style="width:20%">Sensación Térmica<p-sortIcon
+                        field="termica"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-listado>
+            <tr>
+                <td>{{listado.ciudad.pais}}</td>
+                <td>{{listado.ciudad.ciudad}}</td>
+                <td>{{listado.clima}}</td>
+                <td>{{listado.termica}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>

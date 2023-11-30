@@ -1,0 +1,19 @@
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <p-dropdown [options]="cities" formControlName="ciudad" placeholder="Seleccione la Ciudad" optionLabel="nombre"
+        id="city" optionValue="id" [filter]="true" filterBy="name"
+        [ngClass]="{ 'p-error': submitted && f['role'].errors }"></p-dropdown>
+    <div class="p-error" *ngIf="submitted && f['ciudad'].errors">
+        <span *ngIf="f['ciudad'].errors['required']">Ciudad is required</span>
+    </div>
+    <label for="history">Incluir Histórico</label>
+    <br />
+    <p-checkbox id="history" [binary]="true" formControlName="historial"></p-checkbox>
+
+    <div class="form-actions">
+        <button *ngIf="!submitted" pButton pRipple [disabled]="!editForm.valid" icon="pi pi-check"
+            class="p-button-rounded p-button-text">
+            Consultar
+        </button>
+    </div>
+
+</form>
